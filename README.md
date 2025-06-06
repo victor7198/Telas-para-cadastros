@@ -1,16 +1,158 @@
 # GitHub Pages
 
-<img src="https://octodex.github.com/images/Professortocat_v2.png" align="right" height="200px" />
+Tela principal
+import javax.swing.*;
+import java.awt.event.*;
 
-Hey victor7198!
+public class Main {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("Sistema de Cadastro - Autoescola");
+        frame.setSize(300, 250);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(null);
 
-Mona here. I'm done preparing your exercise. Hope you enjoy! 💚
+        JButton btnNovo = new JButton("Novo");
+        JButton btnAlterar = new JButton("Alterar");
+        JButton btnExcluir = new JButton("Excluir");
+        JButton btnSalvar = new JButton("Salvar");
 
-Remember, it's self-paced so feel free to take a break! ☕️
+        btnNovo.setBounds(80, 20, 120, 30);
+        btnAlterar.setBounds(80, 60, 120, 30);
+        btnExcluir.setBounds(80, 100, 120, 30);
+        btnSalvar.setBounds(80, 140, 120, 30);
 
-[![](https://img.shields.io/badge/Go%20to%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/victor7198/Telas-para-cadastros/issues/1)
+        frame.add(btnNovo);
+        frame.add(btnAlterar);
+        frame.add(btnExcluir);
+        frame.add(btnSalvar);
 
----
+        btnNovo.addActionListener(e -> new TelaCadastro());
+        btnAlterar.addActionListener(e -> new TelaAlterar());
+        btnExcluir.addActionListener(e -> new ConfirmacaoExcluir());
+        btnSalvar.addActionListener(e -> new ConfirmacaoSalvar());
 
-&copy; 2025 GitHub &bull; [Code of Conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/code_of_conduct.md) &bull; [MIT License](https://gh.io/mit)
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+    }
+}
 
+
+tela novo cadastro
+
+import javax.swing.*;
+
+public class TelaCadastro extends JFrame {
+    public TelaCadastro() {
+        setTitle("Novo Cadastro de Aluno");
+        setSize(300, 250);
+        setLayout(null);
+
+        JLabel lblNome = new JLabel("Nome:");
+        JTextField txtNome = new JTextField();
+        JLabel lblCPF = new JLabel("CPF:");
+        JTextField txtCPF = new JTextField();
+        JLabel lblCategoria = new JLabel("Categoria CNH:");
+        JTextField txtCategoria = new JTextField();
+
+        lblNome.setBounds(20, 20, 100, 25);
+        txtNome.setBounds(120, 20, 140, 25);
+        lblCPF.setBounds(20, 60, 100, 25);
+        txtCPF.setBounds(120, 60, 140, 25);
+        lblCategoria.setBounds(20, 100, 100, 25);
+        txtCategoria.setBounds(120, 100, 140, 25);
+
+        JButton btnCadastrar = new JButton("Cadastrar");
+        btnCadastrar.setBounds(90, 150, 100, 30);
+        btnCadastrar.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Aluno cadastrado com sucesso!");
+            dispose();
+        });
+
+        add(lblNome); add(txtNome);
+        add(lblCPF); add(txtCPF);
+        add(lblCategoria); add(txtCategoria);
+        add(btnCadastrar);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+}
+
+
+Tela alterar cadastro
+
+import javax.swing.*;
+
+public class TelaAlterar extends JFrame {
+    public TelaAlterar() {
+        setTitle("Alterar Cadastro");
+        setSize(300, 250);
+        setLayout(null);
+
+        JLabel lblID = new JLabel("ID do Aluno:");
+        JTextField txtID = new JTextField();
+        JLabel lblNovoNome = new JLabel("Novo Nome:");
+        JTextField txtNovoNome = new JTextField();
+
+        lblID.setBounds(20, 30, 100, 25);
+        txtID.setBounds(120, 30, 140, 25);
+        lblNovoNome.setBounds(20, 70, 100, 25);
+        txtNovoNome.setBounds(120, 70, 140, 25);
+
+        JButton btnAlterar = new JButton("Alterar");
+        btnAlterar.setBounds(90, 120, 100, 30);
+        btnAlterar.addActionListener(e -> {
+            JOptionPane.showMessageDialog(this, "Cadastro alterado com sucesso!");
+            dispose();
+        });
+
+        add(lblID); add(txtID);
+        add(lblNovoNome); add(txtNovoNome);
+        add(btnAlterar);
+
+        setLocationRelativeTo(null);
+        setVisible(true);
+    }
+}
+
+tela exlcuir 
+
+import javax.swing.*;
+
+public class ConfirmacaoExcluir extends JFrame {
+    public ConfirmacaoExcluir() {
+        int resposta = JOptionPane.showConfirmDialog(
+            null,
+            "Deseja realmente excluir este cadastro?",
+            "Confirmar Exclusão",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Cadastro excluído com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Exclusão cancelada.");
+        }
+    }
+}
+
+tela salvar
+
+import javax.swing.*;
+
+public class ConfirmacaoSalvar extends JFrame {
+    public ConfirmacaoSalvar() {
+        int resposta = JOptionPane.showConfirmDialog(
+            null,
+            "Deseja realmente salvar as informações?",
+            "Confirmar Salvamento",
+            JOptionPane.YES_NO_OPTION
+        );
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Informações salvas com sucesso.");
+        } else {
+            JOptionPane.showMessageDialog(null, "Salvamento cancelado.");
+        }
+    }
+}
